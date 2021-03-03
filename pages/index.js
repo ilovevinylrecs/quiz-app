@@ -1,65 +1,74 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Image from 'next/image';
 
-export default function Home() {
+export const getStaticProps = async () => {
+  const res = await fetch('http://jservice.io/api/random');
+  const data = await res.json();
+
+  return {
+    props: { questions: data }
+  }
+};
+
+const Trivia = ({ questions }) => {
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+    <div className="page">
+      <div className="title">
+        jeopardy!
+      </div>
+      {questions.map(trivia => (
+        <div className="container">
+          <div className="value">value: ${trivia.value}</div>
+          <div className="question">
+            cat:<br />
+            {trivia.category.title}<br />
+            q:<br />
+            {trivia.question}
+          </div>
+          <div className="answer">a: {trivia.answer}</div>
+          <div className="date">airdate: {trivia.airdate.substring(0, 10)}</div>
         </div>
-      </main>
+      ))}
+      <Image src="/me.png" alt="me" width="64" height="64" />
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+      <style jsx>{`
+      .page {
+        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,400;1,400&display=swap');
+        font-family: 'Josefin Sans', sans-serif;
+        background: white;
+        padding: .5rem;
+        margin: .5rem;
+      }
+      .title {
+        font-size: 1.5rem;
+        text-align: center;
+        margin: .5rem;
+        }
+      .value {
+        font-size: 1rem;
+        margin: 1rem;
+        text-align: center;
+      }
+      .question {
+        font-size: 2.5rem;
+        line-height: 4rem;
+        margin: 1rem;
+      }
+      .answer {
+        font-size: 1rem;
+        margin: 7rem .5rem .5rem .5rem;
+      }
+      .date {
+        font-size: 1rem;
+        margin: .5rem;
+      }
+      .container {
+        background: tan;
+        padding: .5rem .5rem;
+        min-height: 300px;
+      }
+      `}</style>
     </div>
-  )
+  );
 }
+
+export default Trivia;
