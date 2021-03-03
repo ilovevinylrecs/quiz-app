@@ -37,7 +37,7 @@ Quiz App steps to build:
 Built using JService /Random API, more info about this free API here: http://jservice.io/
 Consumed API using getStaticProps: https://nextjs.org/docs/basic-features/data-fetching
 Page is styled using JSX: https://nextjs.org/blog/styling-next-with-styled-jsx
-Build button to reveal question: 
+Build button to reveal question using React state hook: https://reactjs.org/docs/hooks-state.html
 
 
 
