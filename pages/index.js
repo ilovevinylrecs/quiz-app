@@ -28,7 +28,8 @@ const Trivia = ({ questions }) => {
           <div className="date">airdate: {trivia.airdate.substring(0, 10)}</div>
         </div>
       ))}
-      <Image src="/me.png" alt="me" width="64" height="64" />
+      <Image src="/alex-trebek.png" alt="Alex Trebek" width="885" height="590" />
+      <div className="quote">"We’re trying to build a kinder and gentler society, and if we all pitch in just a little bit, we’re going to get there. See you next time.”</div>
 
       <style jsx>{`
       .page {
@@ -39,12 +40,12 @@ const Trivia = ({ questions }) => {
         margin: .5rem;
       }
       .title {
-        font-size: 1.5rem;
+        font-size: 3rem;
         text-align: center;
         margin: .5rem;
         }
       .value {
-        font-size: 1rem;
+        font-size: 1.5rem;
         margin: 1rem;
         text-align: center;
       }
@@ -65,6 +66,14 @@ const Trivia = ({ questions }) => {
         background: tan;
         padding: .5rem .5rem;
         min-height: 300px;
+      }
+      .image {
+        image-align: center;
+        margin: .5rem;
+      }
+      .quote {
+        font-size: 1rem;
+        margin: .5rem;
       }
       `}</style>
     </div>
