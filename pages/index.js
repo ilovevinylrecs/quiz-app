@@ -38,6 +38,7 @@ const Trivia = ({ questions }) => {
         background: white;
         padding: .5rem;
         margin: .5rem;
+        max-width: 885px;
       }
       .title {
         font-size: 3rem;
@@ -51,12 +52,12 @@ const Trivia = ({ questions }) => {
       }
       .question {
         font-size: 2.5rem;
-        line-height: 4rem;
+        line-height: 3rem;
         margin: 1rem;
       }
       .answer {
         font-size: 1rem;
-        margin: 7rem .5rem .5rem .5rem;
+        margin: 5rem .5rem .5rem .5rem;
       }
       .date {
         font-size: 1rem;
@@ -66,6 +67,7 @@ const Trivia = ({ questions }) => {
         background: tan;
         padding: .5rem .5rem;
         min-height: 300px;
+        max-width: 885px;
       }
       .image {
         image-align: center;
