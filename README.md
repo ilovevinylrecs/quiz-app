@@ -32,3 +32,14 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+Quiz App steps to build:
+Built using JService /Random API, more info about this free API here: http://jservice.io/
+Consumed API using getStaticProps: https://nextjs.org/docs/basic-features/data-fetching
+Page is styled using JSX: https://nextjs.org/blog/styling-next-with-styled-jsx
+Build button to reveal question using React state hook: https://reactjs.org/docs/hooks-state.html
+Use styled components for button styles: https://styled-components.com/
+
+
+
+
