@@ -44,6 +44,10 @@ const Trivia = ({ questions }) => {
     setShowQuestion(!showQuestion);
   }
 
+  function refreshPage() {
+    window.location.reload();
+  }
+
   return (
     <div className="page">
       <div className="title">jeopardy!</div>
@@ -60,6 +64,8 @@ const Trivia = ({ questions }) => {
           }}>
             <div className="question">question:<br />{trivia.answer}</div>
             <div className="date">airdate: {trivia.airdate.substring(0, 10)}</div>
+            <Button onClick={refreshPage}>Next Clue</Button>
+
           </div>
         </div>
       ))}
