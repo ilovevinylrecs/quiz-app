@@ -37,9 +37,15 @@ export default function Trivia() {
       setTriviaData(await data.json())
     }
     fetchData();
-  }, [setTriviaData])
+  }, [])
+
+  function toggle() {
+    setTriviaData(!triviaData);
+  }
 
   return (
+
+
     <div className="page">
       <div className="title">jeopardy!</div>
       <SolidLine color="black" />
@@ -48,8 +54,15 @@ export default function Trivia() {
           <div className="value"> value: ${data.value}</div>
           <div className="category">category:<br />{data.category.title}</div>
           <div className="answer">answer:<br />{data.question}</div>
-          <div className="question">question:<br />{data.answer}</div>
-          <div className="date">airdate: {data.airdate.substring(0, 10)}</div>
+
+          <Button onClick={toggle}>What/Who is ...?</Button>
+          {/* will toggle between question revealed and hidden when button is clicked */}
+          <div style={{
+            display: triviaData ? "block" : "none"
+          }}>
+            <div className="question">question:<br />{data.answer}</div>
+            <div className="date">airdate: {data.airdate.substring(0, 10)}</div>
+          </div>
         </div>
       ))}
       <Image src="/alex-trebek-b-w.png" alt="Alex Trebek" width="885" height="590" />
@@ -104,6 +117,6 @@ export default function Trivia() {
         padding: 1rem;
       }
       `}</style>
-    </div >
+    </div>
   );
 }
