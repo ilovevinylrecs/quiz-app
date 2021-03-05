@@ -37,7 +37,7 @@ export default function Trivia() {
       setTriviaData(await data.json())
     }
     fetchData();
-  }, [])
+  }, [setTriviaData])
 
   return (
     <div className="page">
