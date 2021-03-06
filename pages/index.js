@@ -33,7 +33,7 @@ export default function Trivia() {
 
   useEffect(() => {
     async function fetchData() {
-      const data = await fetch('http://jservice.io/api/random');
+      const data = await fetch('https://jservice.io/api/random');
       setTriviaData(await data.json())
     }
     fetchData();
