@@ -52,9 +52,9 @@ export default function Trivia() {
         <div className="container" key={data.id}>
           <div className="value"> value: ${data.value}</div>
           <div className="category">category:<br />{data.category.title}</div>
-          <div className="answer">answer:<br />{data.question}</div>
+          <div className="answer">clue:<br />{data.question}</div>
           <Image src="/alex-trebek-b-w.png" alt="Alex Trebek" width="885" height="590" />
-          <div className="question">question:<br />{data.answer}</div>
+          <div className="question">answer:<br />what/who is... {data.answer}</div>
           <div className="date">airdate: {data.airdate.substring(0, 10)}</div>
           <Button onClick={refreshPage}>Next Clue</Button>
         </div>
