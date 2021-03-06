@@ -1,15 +1,16 @@
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-export const getStaticProps = async () => {
-  const res = await fetch('http://jservice.io/api/random');
-  const data = await res.json();
-
-  return {
-    props: { questions: data }
-  }
-};
+const SolidLine = ({ color }) => (
+  <hr
+    style={{
+      color: color,
+      backgroundColor: color,
+      height: 3
+    }}
+  />
+);
 
 const Button = styled.button`
   @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,400;1,400&display=swap');
@@ -27,55 +28,45 @@ const Button = styled.button`
   }
 `;
 
-const SolidLine = ({ color }) => (
-  <hr
-    style={{
-      color: color,
-      backgroundColor: color,
-      height: 3
-    }}
-  />
-);
+export default function Trivia() {
+  const [triviaData, setTriviaData] = useState([]);
 
-const Trivia = ({ questions }) => {
-
-  const [showQuestion, setShowQuestion] = useState(false);
+  useEffect(() => {
+    async function fetchData() {
+      const data = await fetch('http://jservice.io/api/random')
+      setTriviaData(await data.json())
+    }
+    fetchData();
+  }, [])
 
   function toggle() {
-    setShowQuestion(!showQuestion);
+    setTriviaData(!triviaData);
   }
 
-  // async function refreshPage() {
-  //   const refreshedProps = await getStaticProps;
-  //   setShowQuestion(refreshedProps.showQuestion)
-  // }
-
   return (
+
     <div className="page">
       <div className="title">jeopardy!</div>
       <SolidLine color="black" />
-      {questions.map(trivia => (
-        <div className="container" key={trivia.id}>
-          <div className="value"> value: ${trivia.value}</div>
-          <div className="category">category:<br />{trivia.category.title}</div>
-          <div className="answer">answer:<br />{trivia.question}</div>
+      {triviaData.map((data) => (
+        <div className="container" key={data.id}>
+          <div className="value"> value: ${data.value}</div>
+          <div className="category">category:<br />{data.category.title}</div>
+          <div className="answer">answer:<br />{data.question}</div>
+
           <Button onClick={toggle}>What/Who is ...?</Button>
           {/* will toggle between question revealed and hidden when button is clicked */}
           <div style={{
-            display: showQuestion ? "block" : "none"
+            display: triviaData ? "block" : "none"
           }}>
-            <div className="question">question:<br />{trivia.answer}</div>
-            <div className="date">airdate: {trivia.airdate.substring(0, 10)}</div>
-            {/* <Button onClick={refreshPage}>Next Clue</Button> */}
-
+            <div className="question">question:<br />{data.answer}</div>
+            <div className="date">airdate: {data.airdate.substring(0, 10)}</div>
           </div>
         </div>
       ))}
-      {/* <div className="container"> */}
       <Image src="/alex-trebek-b-w.png" alt="Alex Trebek" width="885" height="590" />
       <SolidLine color="black" />
       <div className="quote">"We’re trying to build a kinder and gentler society, and if we all pitch in just a little bit, we’re going to get there.”</div>
-      {/* </div> */}
 
       <style jsx>{`
       .page {
@@ -125,8 +116,6 @@ const Trivia = ({ questions }) => {
         padding: 1rem;
       }
       `}</style>
-    </div >
+    </div>
   );
 }
-
-export default Trivia;
