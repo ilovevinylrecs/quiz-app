@@ -33,7 +33,7 @@ export default function Trivia() {
 
   useEffect(() => {
     async function fetchData() {
-      const data = await fetch('http://jservice.io/api/random')
+      const data = await fetch('http://jservice.io/api/random');
       setTriviaData(await data.json())
     }
     fetchData();
@@ -54,16 +54,17 @@ export default function Trivia() {
           <div className="category">category:<br />{data.category.title}</div>
           <div className="answer">answer:<br />{data.question}</div>
 
-          <Button onClick={toggle}>What/Who is ...?</Button>
+          {/* <Button onClick={toggle}>What/Who is ...?</Button>
           {/* will toggle between question revealed and hidden when button is clicked */}
-          <div style={{
+          {/* <div style={{
             display: triviaData ? "block" : "none"
-          }}>
-            <div className="question">question:<br />{data.answer}</div>
-            <div className="date">airdate: {data.airdate.substring(0, 10)}</div>
-          </div>
+          }}>  */}
+          <div className="question">question:<br />{data.answer}</div>
+          <div className="date">airdate: {data.airdate.substring(0, 10)}</div>
         </div>
-      ))}
+        // </div>
+      ))
+      }
       <Image src="/alex-trebek-b-w.png" alt="Alex Trebek" width="885" height="590" />
       <SolidLine color="black" />
       <div className="quote">"We’re trying to build a kinder and gentler society, and if we all pitch in just a little bit, we’re going to get there.”</div>
@@ -116,6 +117,6 @@ export default function Trivia() {
         padding: 1rem;
       }
       `}</style>
-    </div>
+    </div >
   );
 }
