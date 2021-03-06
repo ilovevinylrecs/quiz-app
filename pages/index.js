@@ -54,15 +54,15 @@ export default function Trivia() {
           <div className="category">category:<br />{data.category.title}</div>
           <div className="answer">answer:<br />{data.question}</div>
 
-          {/* <Button onClick={toggle}>What/Who is ...?</Button>
+          <Button onClick={toggle}>What/Who is ...?</Button>
           {/* will toggle between question revealed and hidden when button is clicked */}
-          {/* <div style={{
+          <div style={{
             display: triviaData ? "block" : "none"
-          }}>  */}
-          <div className="question">question:<br />{data.answer}</div>
-          <div className="date">airdate: {data.airdate.substring(0, 10)}</div>
+          }}>
+            <div className="question">question:<br />{data.answer}</div>
+            <div className="date">airdate: {data.airdate.substring(0, 10)}</div>
+          </div>
         </div>
-        // </div>
       ))
       }
       <Image src="/alex-trebek-b-w.png" alt="Alex Trebek" width="885" height="590" />
