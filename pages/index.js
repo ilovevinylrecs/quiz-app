@@ -16,8 +16,8 @@ const Button = styled.button`
   @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,400;1,400&display=swap');
   font-family: 'Josefin Sans', sans-serif;
   background: tan;
-  font-size: 2.5rem;
-  margin: 2rem .5rem 3rem 1rem;
+  font-size: 2rem;
+  margin: 2rem .5rem 1rem 1rem;
   padding: 1rem;
   color: black;
   text-align: center;
@@ -39,6 +39,10 @@ export default function Trivia() {
     fetchData();
   }, [])
 
+  function refreshPage() {
+    window.location.reload(false);
+  }
+
   return (
 
     <div className="page">
@@ -49,12 +53,13 @@ export default function Trivia() {
           <div className="value"> value: ${data.value}</div>
           <div className="category">category:<br />{data.category.title}</div>
           <div className="answer">answer:<br />{data.question}</div>
+          <Image src="/alex-trebek-b-w.png" alt="Alex Trebek" width="885" height="590" />
           <div className="question">question:<br />{data.answer}</div>
           <div className="date">airdate: {data.airdate.substring(0, 10)}</div>
+          <Button onClick={refreshPage}>Next Clue</Button>
         </div>
-      ))
-      }
-      <Image src="/alex-trebek-b-w.png" alt="Alex Trebek" width="885" height="590" />
+      ))}
+
       <SolidLine color="black" />
       <div className="quote">"We’re trying to build a kinder and gentler society, and if we all pitch in just a little bit, we’re going to get there.”</div>
 
@@ -96,7 +101,7 @@ export default function Trivia() {
       }
       .container {
         background: tan;
-        padding: .5rem;
+        padding: .5rem 0rem .5rem 0rem;
         min-height: 300px;
         max-width: 885px;
       }
@@ -106,6 +111,6 @@ export default function Trivia() {
         padding: 1rem;
       }
       `}</style>
-    </div >
+    </div>
   );
 }
