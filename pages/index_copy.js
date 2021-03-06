@@ -3,12 +3,12 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 export const getStaticProps = async () => {
-    const res = await fetch('http://jservice.io/api/random');
-    const data = await res.json();
+  const res = await fetch('http://jservice.io/api/random');
+  const data = await res.json();
 
-    return {
-        props: { questions: data }
-    }
+  return {
+    props: { questions: data }
+  }
 };
 
 const Button = styled.button`
@@ -28,56 +28,56 @@ const Button = styled.button`
 `;
 
 const SolidLine = ({ color }) => (
-    <hr
-        style={{
-            color: color,
-            backgroundColor: color,
-            height: 3
-        }}
-    />
+  <hr
+    style={{
+      color: color,
+      backgroundColor: color,
+      height: 3
+    }}
+  />
 );
 
 const Trivia = ({ questions }) => {
 
-    const [showQuestion, setShowQuestion] = useState(false);
+  const [showQuestion, setShowQuestion] = useState(false);
 
-    function toggle() {
-        setShowQuestion(!showQuestion);
-    }
+  function toggle() {
+    setShowQuestion(!showQuestion);
+  }
 
-    // async function refreshPage() {
-    //   const refreshedProps = await getStaticProps;
-    //   setShowQuestion(refreshedProps.showQuestion)
-    // }
+  // async function refreshPage() {
+  //   const refreshedProps = await getStaticProps;
+  //   setShowQuestion(refreshedProps.showQuestion)
+  // }
 
-    return (
-        <div className="page">
-            <div className="title">jeopardy!</div>
-            <SolidLine color="black" />
-            {questions.map(trivia => (
-                <div className="container" key={trivia.id}>
-                    <div className="value"> value: ${trivia.value}</div>
-                    <div className="category">category:<br />{trivia.category.title}</div>
-                    <div className="answer">answer:<br />{trivia.question}</div>
-                    <Button onClick={toggle}>What/Who is ...?</Button>
-                    {/* will toggle between question revealed and hidden when button is clicked */}
-                    <div style={{
-                        display: showQuestion ? "block" : "none"
-                    }}>
-                        <div className="question">question:<br />{trivia.answer}</div>
-                        <div className="date">airdate: {trivia.airdate.substring(0, 10)}</div>
-                        {/* <Button onClick={refreshPage}>Next Clue</Button> */}
+  return (
+    <div className="page">
+      <div className="title">jeopardy!</div>
+      <SolidLine color="black" />
+      {questions.map((trivia) => (
+        <div className="container" key={trivia.id}>
+          <div className="value"> value: ${trivia.value}</div>
+          <div className="category">category:<br />{trivia.category.title}</div>
+          <div className="answer">answer:<br />{trivia.question}</div>
+          <Button onClick={toggle}>What/Who is ...?</Button>
+          {/* will toggle between question revealed and hidden when button is clicked */}
+          <div style={{
+            display: showQuestion ? "block" : "none"
+          }}>
+            <div className="question">question:<br />{trivia.answer}</div>
+            <div className="date">airdate: {trivia.airdate.substring(0, 10)}</div>
+            {/* <Button onClick={refreshPage}>Next Clue</Button> */}
 
-                    </div>
-                </div>
-            ))}
-            {/* <div className="container"> */}
-            <Image src="/alex-trebek-b-w.png" alt="Alex Trebek" width="885" height="590" />
-            <SolidLine color="black" />
-            <div className="quote">"We’re trying to build a kinder and gentler society, and if we all pitch in just a little bit, we’re going to get there.”</div>
-            {/* </div> */}
+          </div>
+        </div>
+      ))}
+      {/* <div className="container"> */}
+      <Image src="/alex-trebek-b-w.png" alt="Alex Trebek" width="885" height="590" />
+      <SolidLine color="black" />
+      <div className="quote">"We’re trying to build a kinder and gentler society, and if we all pitch in just a little bit, we’re going to get there.”</div>
+      {/* </div> */}
 
-            <style jsx>{`
+      <style jsx>{`
       .page {
         @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,400;1,400&display=swap');
         font-family: 'Josefin Sans', sans-serif;
@@ -125,8 +125,8 @@ const Trivia = ({ questions }) => {
         padding: 1rem;
       }
       `}</style>
-        </div >
-    );
+    </div >
+  );
 }
 
 export default Trivia;
